@@ -25,7 +25,7 @@ SIDEBAR_STYLE = {
 
 
 # Navigation Bar function
-def Navbar():
+def Navbar(id="navbar"):
     navbar = html.Div(
             [
                 html.H2("Clarity", className="display-4"),
@@ -54,6 +54,7 @@ def Navbar():
                 ),
             ],
         style=SIDEBAR_STYLE,
-        className="sidebar"
+        className="sidebar",
+        id=id
     )
     return navbar

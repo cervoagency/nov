@@ -4,7 +4,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 from navbar import Navbar
-from layouts import (Home, questionnaire)
+from layouts import (Home, questionnaire, Login)
 
 import app
 from app import app
@@ -22,18 +22,34 @@ nav = Navbar()
 content = html.Div(id="page-content")
 
 # callbacks for page URLs: This determines the different URLS for the website
-@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
-def display_page(pathname):
+@app.callback(
+    [Output("page-content", "children"), Output("navbar", "style")],
+    [Input("url", "pathname"), Input("user-session-store", "data")],
+    prevent_initial_call=False
+)
+def display_page(pathname, session_data):
+    # Check if user is authenticated
+    is_authenticated = session_data and session_data.get("authenticated", False)
+    
+    # Always show login page if not authenticated
+    if not is_authenticated:
+        return (Login, {"display": "none"})
+    
+    # If authenticated, show navbar and appropriate page
+    navbar_style = {"display": "flex"}
+    
     if pathname in [app_name, app_name + "/"]:
-        return Home
+        return (Home, navbar_style)
     elif pathname.endswith("/questionnaire"):
-        return questionnaire
+        return (questionnaire, navbar_style)
     else:
-        return Home
+        return (Home, navbar_style)
 # Main index function that will call and return all layout variables
 def index():
     layout = html.Div([
         dcc.Location(id="url"),
+        # User session storage
+        dcc.Store(id="user-session-store", data={}, storage_type="session"),
         # Hidden element for JS output
         html.Div(id="_js_output", style={"display": "none"}),
         # Loading screen overlay

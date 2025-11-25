@@ -4,6 +4,174 @@ import data
 import plotly.graph_objects as go
 from data import final_data
 
+# Login/Signup Layout
+Login = html.Div([
+    html.Div([
+        dbc.Container([
+            dbc.Row([
+                dbc.Col([
+                    html.Div([
+                        # Left side - Branding and info
+                        html.Div([
+                            html.H1("Clarity", style={
+                                "color": "white",
+                                "fontSize": "3.5rem",
+                                "fontWeight": "700",
+                                "marginBottom": "1rem"
+                            }),
+                            html.P("By Nisar Solutions", style={
+                                "color": "rgba(255,255,255,0.8)",
+                                "fontSize": "1.1rem",
+                                "marginBottom": "2rem"
+                            }),
+                            html.P("Powerful financial insights and analysis tools for modern businesses", style={
+                                "color": "rgba(255,255,255,0.7)",
+                                "fontSize": "1rem",
+                                "lineHeight": "1.6",
+                                "maxWidth": "400px"
+                            })
+                        ], style={"marginTop": "4rem"})
+                    ], className="login-left-section"),
+                ], xs=12, sm=12, md=6, lg=6, style={"display": "flex", "alignItems": "center"}),
+                
+                dbc.Col([
+                    html.Div([
+                        # Right side - Form
+                        html.Div([
+                            html.H2("Welcome Back", id="auth-title", style={
+                                "marginBottom": "0.5rem",
+                                "color": "var(--text-primary)",
+                                "fontSize": "2rem",
+                                "fontWeight": "700"
+                            }),
+                            html.P("Sign in to your account to continue", id="auth-subtitle", style={
+                                "color": "var(--text-secondary)",
+                                "marginBottom": "2rem"
+                            }),
+                            
+                            # Email/Username input
+                            html.Div([
+                                html.Label("Email or Username", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                                dcc.Input(
+                                    id="auth-email",
+                                    type="text",
+                                    placeholder="Enter your email or username",
+                                    className="auth-input",
+                                    style={
+                                        "width": "100%",
+                                        "padding": "0.75rem 1rem",
+                                        "borderRadius": "0.5rem",
+                                        "border": "1px solid #e5e7eb",
+                                        "fontSize": "1rem",
+                                        "marginBottom": "1.5rem",
+                                        "fontFamily": "Inter, sans-serif"
+                                    }
+                                ),
+                            ]),
+                            
+                            # Password input
+                            html.Div([
+                                html.Label("Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                                dcc.Input(
+                                    id="auth-password",
+                                    type="password",
+                                    placeholder="Enter your password",
+                                    className="auth-input",
+                                    style={
+                                        "width": "100%",
+                                        "padding": "0.75rem 1rem",
+                                        "borderRadius": "0.5rem",
+                                        "border": "1px solid #e5e7eb",
+                                        "fontSize": "1rem",
+                                        "marginBottom": "1.5rem",
+                                        "fontFamily": "Inter, sans-serif"
+                                    }
+                                ),
+                            ], id="password-section"),
+                            
+                            # Confirm Password (hidden for login, shown for signup)
+                            html.Div([
+                                html.Label("Confirm Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                                dcc.Input(
+                                    id="auth-confirm-password",
+                                    type="password",
+                                    placeholder="Confirm your password",
+                                    className="auth-input",
+                                    style={
+                                        "width": "100%",
+                                        "padding": "0.75rem 1rem",
+                                        "borderRadius": "0.5rem",
+                                        "border": "1px solid #e5e7eb",
+                                        "fontSize": "1rem",
+                                        "marginBottom": "1.5rem",
+                                        "fontFamily": "Inter, sans-serif"
+                                    }
+                                ),
+                            ], id="confirm-password-section", style={"display": "none"}),
+                            
+                            # Error message
+                            html.Div(id="auth-error", style={
+                                "color": "#dc2626",
+                                "fontSize": "0.875rem",
+                                "marginBottom": "1rem",
+                                "display": "none"
+                            }),
+                            
+                            # Submit button
+                            html.Button(
+                                "Sign In",
+                                id="auth-submit-btn",
+                                style={
+                                    "width": "100%",
+                                    "padding": "0.75rem 1rem",
+                                    "backgroundColor": "var(--primary-color)",
+                                    "color": "white",
+                                    "border": "none",
+                                    "borderRadius": "0.5rem",
+                                    "fontSize": "1rem",
+                                    "fontWeight": "600",
+                                    "cursor": "pointer",
+                                    "transition": "all 0.3s ease",
+                                    "marginBottom": "1rem"
+                                },
+                                className="auth-btn"
+                            ),
+                            
+                            # Toggle between sign in and sign up
+                            html.Div([
+                                html.Span("Don't have an account? ", style={"color": "var(--text-secondary)"}),
+                                html.Button(
+                                    "Sign Up",
+                                    id="toggle-signup-btn",
+                                    style={
+                                        "background": "none",
+                                        "border": "none",
+                                        "color": "var(--primary-color)",
+                                        "cursor": "pointer",
+                                        "fontSize": "1rem",
+                                        "fontWeight": "600",
+                                        "textDecoration": "underline"
+                                    }
+                                )
+                            ], style={"textAlign": "center", "marginTop": "1rem"}),
+                        ], style={
+                            "backgroundColor": "white",
+                            "padding": "2rem",
+                            "borderRadius": "1rem",
+                            "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.07)",
+                            "maxWidth": "400px",
+                            "margin": "0 auto"
+                        }),
+                    ], style={"display": "flex", "alignItems": "center", "minHeight": "100vh"})
+                ], xs=12, sm=12, md=6, lg=6)
+            ], style={"minHeight": "100vh"}),
+        ], fluid=True, style={"padding": "0"})
+    ], style={
+        "background": "linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)",
+        "minHeight": "100vh"
+    }),
+], style={"padding": "0", "margin": "0"})
+
 Home = html.Div([
     html.Div([
         html.H1("Welcome to Clarity", className="hero-title"),

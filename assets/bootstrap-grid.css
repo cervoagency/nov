@@ -642,4 +642,55 @@ hr {
     animation: slideIn 0.3s ease-out;
 }
 
+/* Login/Signup Styles */
+.login-left-section {
+    padding: 2rem;
+}
+
+.auth-input {
+    transition: all 0.3s ease !important;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.auth-btn {
+    transition: all 0.3s ease !important;
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
+}
+
+.auth-btn:active {
+    transform: translateY(0);
+}
+
+/* Login Responsive Design */
+@media (max-width: 768px) {
+    .login-left-section {
+        display: none !important;
+    }
+    
+    #auth-form {
+        max-width: 100%;
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #auth-form {
+        padding: 1.5rem !important;
+    }
+    
+    #auth-form h2 {
+        font-size: 1.5rem !important;
+    }
+}
+
 /*# sourceMappingURL=bootstrap-grid.css.map */
