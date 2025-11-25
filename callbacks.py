@@ -105,7 +105,6 @@ def toggle_auth_mode(n_clicks, current_text):
         Output('user-session-store', 'data'),
         Output('auth-error', 'children'),
         Output('auth-error', 'style'),
-        Output('url', 'pathname'),
     ],
     Input('auth-submit-btn', 'n_clicks'),
     [
@@ -123,7 +122,6 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
             session_data,
             "Please fill in all fields",
             {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
-            None
         )
     
     # Sign up validation
@@ -133,21 +131,18 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
                 session_data,
                 "Please confirm your password",
                 {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
-                None
             )
         if password != confirm_password:
             return (
                 session_data,
                 "Passwords do not match",
                 {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
-                None
             )
         if len(password) < 6:
             return (
                 session_data,
                 "Password must be at least 6 characters",
                 {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
-                None
             )
     
     # For demo: accept any valid input (in production, validate against database)
@@ -156,7 +151,6 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
             session_data,
             "Password too short",
             {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
-            None
         )
     
     # Create session
@@ -170,6 +164,20 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
         user_data,
         "",
         {"display": "none"},
-        "/"  # Redirect to home
     )
+
+# Clientside callback to redirect after successful login
+app.clientside_callback(
+    """
+    function(data) {
+        if (data && data.authenticated) {
+            window.location.href = '/';
+        }
+        return '';
+    }
+    """,
+    Output('_auth_redirect', 'children'),
+    Input('user-session-store', 'data'),
+    prevent_initial_call=True
+)
 

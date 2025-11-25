@@ -52,6 +52,8 @@ def index():
         dcc.Store(id="user-session-store", data={}, storage_type="session"),
         # Hidden element for JS output
         html.Div(id="_js_output", style={"display": "none"}),
+        # Hidden element for auth redirect
+        html.Div(id="_auth_redirect", style={"display": "none"}),
         # Loading screen overlay
         html.Div(id="loading-screen", className="loading-screen"),
         # Mobile menu toggle button
