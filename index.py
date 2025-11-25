@@ -10,6 +10,8 @@ import app
 from app import app
 # Import server for deployment: hide this when in local, but should not be hidden when deploying
 from app import srv as server
+# Import callbacks to register them
+import callbacks
 
 app_name = os.getenv("DASH_APP_PATH","/ClarityApp")
 
@@ -32,7 +34,15 @@ def display_page(pathname):
         return Home
 # Main index function that will call and return all layout variables
 def index():
-    layout = html.Div([dcc.Location(id="url"), nav, content])
+    layout = html.Div([
+        dcc.Location(id="url"),
+        # Mobile menu toggle button
+        html.Button("☰", id="mobile-menu-toggle", className="mobile-menu-toggle", n_clicks=0),
+        # Sidebar overlay for mobile
+        html.Div(id="sidebar-overlay", className="sidebar-overlay"),
+        nav,
+        content
+    ])
     return layout
 
 # Set layout to index function
