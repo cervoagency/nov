@@ -34,6 +34,8 @@ def display_page(pathname):
 def index():
     layout = html.Div([
         dcc.Location(id="url"),
+        # Hidden element for JS output
+        html.Div(id="_js_output", style={"display": "none"}),
         # Loading screen overlay
         html.Div(id="loading-screen", className="loading-screen"),
         # Mobile menu toggle button

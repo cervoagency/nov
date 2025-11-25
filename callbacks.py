@@ -54,10 +54,10 @@ app.clientside_callback(
                 loadingScreen.classList.remove('show');
             }, 400);
         }
-        return '';
+        return window.location.pathname;
     }
     """,
-    Output('url', 'pathname'),
+    Output('_js_output', 'children'),
     Input('url', 'pathname'),
     prevent_initial_call=True
 )
