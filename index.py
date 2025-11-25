@@ -34,6 +34,8 @@ def display_page(pathname):
 def index():
     layout = html.Div([
         dcc.Location(id="url"),
+        # Loading screen overlay
+        html.Div(id="loading-screen", className="loading-screen"),
         # Mobile menu toggle button
         html.Button("☰", id="mobile-menu-toggle", className="mobile-menu-toggle", n_clicks=0),
         # Sidebar overlay for mobile
