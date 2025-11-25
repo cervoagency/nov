@@ -8,9 +8,11 @@ This is a Dash web application called "Clarity" developed by Nisar Solutions. It
 - `index.py` - Application entry point with routing and layout
 - `layouts.py` - Page layouts including Home and questionnaire pages
 - `navbar.py` - Navigation sidebar component
-- `callbacks.py` - Dash callbacks (currently minimal)
+- `callbacks.py` - Dash callbacks including mobile menu toggle
 - `data.py` - Sample data for charts
-- `assets/` - Static assets including images and CSS
+- `assets/` - Static assets including:
+  - `bootstrap-grid.css` - Consolidated Bootstrap grid and all custom modern styling
+  - Image assets (logos)
 - `requirements.txt` - Python dependencies
 
 ## Technology Stack
@@ -44,7 +46,14 @@ This is a Dash web application called "Clarity" developed by Nisar Solutions. It
      - Pie chart showing data by location
      - Two indicator gauges
 
-## Recent Changes (November 25, 2025)
+## Recent Changes (November 25, 2025 - Final Update)
+- **Consolidated CSS Architecture:**
+  - Merged all custom styles into existing `assets/bootstrap-grid.css` file
+  - Removed separate `custom_styles.css` file
+  - All styling now centralized in one CSS file for cleaner codebase
+  - Combined Bootstrap grid system with modern UI/UX styles
+
+## Initial Setup (November 25, 2025)
 - Imported from GitHub and configured for Replit environment
 - Updated server configuration to run on 0.0.0.0:5000
 - Installed Python 3.11 and all dependencies
