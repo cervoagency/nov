@@ -37,7 +37,7 @@ Login = html.Div([
                 dbc.Col([
                     html.Div([
                         # Right side - Form
-                        html.Div([
+                        html.Form([
                             html.H2("Welcome Back", id="auth-title", style={
                                 "marginBottom": "0.5rem",
                                 "color": "var(--text-primary)",
@@ -57,6 +57,7 @@ Login = html.Div([
                                     type="text",
                                     placeholder="Enter your email or username",
                                     className="auth-input",
+                                    autoComplete="username",
                                     style={
                                         "width": "100%",
                                         "padding": "0.75rem 1rem",
@@ -64,7 +65,8 @@ Login = html.Div([
                                         "border": "1px solid #e5e7eb",
                                         "fontSize": "1rem",
                                         "marginBottom": "1.5rem",
-                                        "fontFamily": "Inter, sans-serif"
+                                        "fontFamily": "Inter, sans-serif",
+                                        "boxSizing": "border-box"
                                     }
                                 ),
                             ]),
@@ -77,6 +79,7 @@ Login = html.Div([
                                     type="password",
                                     placeholder="Enter your password",
                                     className="auth-input",
+                                    autoComplete="current-password",
                                     style={
                                         "width": "100%",
                                         "padding": "0.75rem 1rem",
@@ -84,7 +87,8 @@ Login = html.Div([
                                         "border": "1px solid #e5e7eb",
                                         "fontSize": "1rem",
                                         "marginBottom": "1.5rem",
-                                        "fontFamily": "Inter, sans-serif"
+                                        "fontFamily": "Inter, sans-serif",
+                                        "boxSizing": "border-box"
                                     }
                                 ),
                             ], id="password-section"),
@@ -97,6 +101,7 @@ Login = html.Div([
                                     type="password",
                                     placeholder="Confirm your password",
                                     className="auth-input",
+                                    autoComplete="new-password",
                                     style={
                                         "width": "100%",
                                         "padding": "0.75rem 1rem",
@@ -104,7 +109,8 @@ Login = html.Div([
                                         "border": "1px solid #e5e7eb",
                                         "fontSize": "1rem",
                                         "marginBottom": "1.5rem",
-                                        "fontFamily": "Inter, sans-serif"
+                                        "fontFamily": "Inter, sans-serif",
+                                        "boxSizing": "border-box"
                                     }
                                 ),
                             ], id="confirm-password-section", style={"display": "none"}),
@@ -121,6 +127,8 @@ Login = html.Div([
                             html.Button(
                                 "Sign In",
                                 id="auth-submit-btn",
+                                n_clicks=0,
+                                type="button",
                                 style={
                                     "width": "100%",
                                     "padding": "0.75rem 1rem",
@@ -143,6 +151,8 @@ Login = html.Div([
                                 html.Button(
                                     "Sign Up",
                                     id="toggle-signup-btn",
+                                    n_clicks=0,
+                                    type="button",
                                     style={
                                         "background": "none",
                                         "border": "none",

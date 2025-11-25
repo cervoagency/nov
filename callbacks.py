@@ -1,4 +1,4 @@
-from dash import Dash, dcc, dash_table, html, Input, Output, State, Patch, clientside_callback
+from dash import Dash, dcc, dash_table, html, Input, Output, State, Patch, clientside_callback, exceptions
 from app import app
 import plotly.graph_objects as go
 import plotly.express as px
@@ -72,6 +72,9 @@ app.clientside_callback(
         Output('confirm-password-section', 'style'),
         Output('auth-submit-btn', 'children'),
         Output('toggle-signup-btn', 'children'),
+        Output('auth-email', 'value'),
+        Output('auth-password', 'value'),
+        Output('auth-confirm-password', 'value'),
     ],
     Input('toggle-signup-btn', 'n_clicks'),
     State('toggle-signup-btn', 'children'),
@@ -87,7 +90,10 @@ def toggle_auth_mode(n_clicks, current_text):
             "Sign up to get started",
             {"display": "block"},
             "Create Account",
-            "Sign In"
+            "Sign In",
+            "",  # Clear email
+            "",  # Clear password
+            "",  # Clear confirm password
         )
     else:
         # Switch to sign in
@@ -96,7 +102,10 @@ def toggle_auth_mode(n_clicks, current_text):
             "Sign in to your account to continue",
             {"display": "none"},
             "Sign In",
-            "Sign Up"
+            "Sign Up",
+            "",  # Clear email
+            "",  # Clear password
+            "",  # Clear confirm password
         )
 
 # Handle authentication
@@ -114,9 +123,13 @@ def toggle_auth_mode(n_clicks, current_text):
         State('auth-submit-btn', 'children'),
         State('user-session-store', 'data'),
     ],
-    prevent_initial_call=True
+    prevent_initial_call=False
 )
 def authenticate_user(n_clicks, email, password, confirm_password, submit_text, session_data):
+    # Check if button was never clicked
+    if not n_clicks or n_clicks == 0:
+        raise exceptions.PreventUpdate
+    
     if not email or not password:
         return (
             session_data,
