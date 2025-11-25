@@ -2,7 +2,7 @@
 import os
 from dash import dcc
 from dash import html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 from navbar import Navbar
 from layouts import (Home, questionnaire, Login)
 
@@ -24,7 +24,8 @@ content = html.Div(id="page-content")
 # callbacks for page URLs: This determines the different URLS for the website
 @app.callback(
     [Output("page-content", "children"), Output("navbar", "style")],
-    [Input("url", "pathname"), Input("user-session-store", "data")],
+    Input("url", "pathname"),
+    State("user-session-store", "data"),
     prevent_initial_call=False
 )
 def display_page(pathname, session_data):
