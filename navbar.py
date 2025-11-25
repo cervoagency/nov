@@ -16,9 +16,8 @@ SIDEBAR_STYLE = {
     "top": 0,
     "left": 0,
     "bottom": 0,
-    "width": "16rem",
-    "padding": "2rem 1rem",
-    "background-color": "white",
+    "width": "18rem",
+    "padding": "2rem 1.5rem",
 }
 
 # the styles for the main content position it to the right of the sidebar and
@@ -28,29 +27,33 @@ SIDEBAR_STYLE = {
 # Navigation Bar function
 def Navbar():
     navbar = html.Div(
-            [html.H2("Demo", className="display-4"),
-             html.H4("Test"),
-                html.A(
-                    dbc.Row(
-                        [
-                            dbc.Col(html.Img(src=Logo, height="150px")),
-                        ],
-                        align="center",
-                        className="g-0",
+            [
+                html.H2("Clarity", className="display-4"),
+                html.H4("by Nisar Solutions"),
+                html.Div(
+                    html.A(
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=Logo, height="140px")),
+                            ],
+                            align="center",
+                            className="g-0",
+                        ),
+                        style={"textDecoration": "none"},
                     ),
-                    #href="https://nisarsolutions.com",
-                    style={"textDecoration": "none"},
+                    className="logo-container"
                 ),
-             html.Hr(),
+                html.Hr(),
                 dbc.Nav(
                     [
-                        dbc.NavLink("Home", active="exact", href="/"),
-                        dbc.NavLink("Démo", href="/questionnaire", active="exact"),
+                        dbc.NavLink("🏠 Home", active="exact", href="/"),
+                        dbc.NavLink("📊 Dashboard", href="/questionnaire", active="exact"),
                     ],
                     vertical=True,
                     pills=True,
                 ),
-                ],
+            ],
         style=SIDEBAR_STYLE,
+        className="sidebar"
     )
     return navbar

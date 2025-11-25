@@ -16,8 +16,7 @@ app_name = os.getenv("DASH_APP_PATH","/ClarityApp")
 # Layout variables, navbar, header, content, and container
 nav = Navbar()
 CONTENT_STYLE = {
-    "margin-left": "15rem",
-    "padding": "2rem 1rem",
+    "margin-left": "18rem",
 }
 # used to have the content show on the website
 content = html.Div(id="page-content", style=CONTENT_STYLE)
