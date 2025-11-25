@@ -11,12 +11,12 @@ Logo = "assets/nisar_solutions_logo_nov25.png"
 # make a reuseable navitem
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
+# Note: width is controlled by CSS media queries in custom_styles.css
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
     "left": 0,
     "bottom": 0,
-    "width": "18rem",
     "padding": "2rem 1.5rem",
 }
 

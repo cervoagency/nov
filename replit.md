@@ -61,6 +61,16 @@ This is a Dash web application called "Clarity" developed by Nisar Solutions. It
   - Improved form styling with better spacing and modern inputs
   - Enhanced charts with card containers and shadows
   - Added smooth animations and hover effects
+- **Comprehensive Responsive Design:**
+  - Mobile-first approach with breakpoints for phone (≤576px), tablet (577-992px), and desktop (≥993px)
+  - Mobile hamburger menu with slide-in sidebar and overlay
+  - Responsive grid system using Bootstrap breakpoints (xs, sm, md, lg)
+  - Optimized typography scaling across all device sizes
+  - Full-width buttons and stacked cards on mobile
+  - Responsive charts that adapt to screen size
+  - Touch-friendly input sizes (16px minimum to prevent iOS zoom)
+  - Landscape orientation optimizations for tablets
+  - Print-friendly styles
 
 ## Notes
 - The application uses Bootstrap Zephyr theme with custom CSS overlay

@@ -40,6 +40,7 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(180deg, #4F46E5 0%, #4338CA 100%) !important;
     box-shadow: var(--shadow-xl);
     border-right: none !important;
+    width: 18rem; /* Default desktop width */
 }
 
 .sidebar h2, .sidebar h4 {
@@ -89,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
 #page-content {
     background: transparent;
     padding: 2.5rem 3rem !important;
+    margin-left: 18rem; /* Default desktop margin */
 }
 
 /* Cards */
@@ -236,6 +238,7 @@ button:active, .btn:active {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 1000;
+        width: 18rem;
     }
     
     .sidebar.show {
@@ -364,26 +367,31 @@ button:active, .btn:active {
     /* Ensure sidebar is always visible on desktop */
     .sidebar {
         transform: translateX(0) !important;
+        width: 18rem;
     }
     
-    /* Larger screens can handle wider sidebar */
-    @media (min-width: 1400px) {
-        .sidebar {
-            width: 20rem;
-        }
-        
-        #page-content {
-            margin-left: 20rem !important;
-            padding: 3rem 4rem !important;
-        }
-        
-        .hero-title {
-            font-size: 4rem;
-        }
-        
-        .hero-section {
-            padding: 5rem 3rem;
-        }
+    #page-content {
+        margin-left: 18rem !important;
+    }
+}
+
+/* Extra Large screens (1400px and above) */
+@media (min-width: 1400px) {
+    .sidebar {
+        width: 20rem;
+    }
+    
+    #page-content {
+        margin-left: 20rem !important;
+        padding: 3rem 4rem !important;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .hero-section {
+        padding: 5rem 3rem;
     }
 }
 

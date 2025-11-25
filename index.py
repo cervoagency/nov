@@ -17,11 +17,9 @@ app_name = os.getenv("DASH_APP_PATH","/ClarityApp")
 
 # Layout variables, navbar, header, content, and container
 nav = Navbar()
-CONTENT_STYLE = {
-    "marginLeft": "18rem",
-}
+# Content margin is controlled by CSS media queries in custom_styles.css
 # used to have the content show on the website
-content = html.Div(id="page-content", style=CONTENT_STYLE)
+content = html.Div(id="page-content")
 
 # callbacks for page URLs: This determines the different URLS for the website
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
