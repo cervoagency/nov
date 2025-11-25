@@ -41,10 +41,5 @@ app.layout = index()
 
 # Call app server
 if __name__ == '__main__':
-    #PROD
-    #app.run_server(debug=False, use_reloader=False)
-    #DEV
-    app.run_server(debug=True, use_reloader=True, port=8002)
-
-
-# app.run_server(debug=True, port=8002)   (use this to make the debug go away)
+    # Replit configuration: run on 0.0.0.0:5000
+    app.run_server(debug=True, host='0.0.0.0', port=5000)
