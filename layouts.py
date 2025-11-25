@@ -23,7 +23,7 @@ Home = html.Div([
                     style={"color": "var(--text-secondary)"}
                 ),
             ], className="modern-card fade-in")
-        ], md=4),
+        ], xs=12, sm=12, md=4, lg=4),
         dbc.Col([
             html.Div([
                 html.Div("💼", style={"fontSize": "3rem", "marginBottom": "1rem"}),
@@ -33,7 +33,7 @@ Home = html.Div([
                     style={"color": "var(--text-secondary)"}
                 ),
             ], className="modern-card fade-in")
-        ], md=4),
+        ], xs=12, sm=12, md=4, lg=4),
         dbc.Col([
             html.Div([
                 html.Div("⚡", style={"fontSize": "3rem", "marginBottom": "1rem"}),
@@ -43,7 +43,7 @@ Home = html.Div([
                     style={"color": "var(--text-secondary)"}
                 ),
             ], className="modern-card fade-in")
-        ], md=4),
+        ], xs=12, sm=12, md=4, lg=4),
     ], style={"marginTop": "2rem"}),
 ], style={"padding": "0"})
 
@@ -103,29 +103,29 @@ questionnaire=html.Div([
             dbc.Col([
                 dbc.FormText("Last Year Profit", className="form-label"),
                 dcc.Input(id='profit_an_dernier', type="number", placeholder="Enter amount...", style={'width': '100%'}),
-            ], md=6),
+            ], xs=12, sm=12, md=6, lg=6),
             dbc.Col([
                 dbc.FormText("Current Year Projected Profit", className="form-label"),
                 dcc.Input(id='profit_prev_ann_courante', type="number", placeholder="Enter amount...", style={'width': '100%'}),
-            ], md=6),
+            ], xs=12, sm=12, md=6, lg=6),
         ], style={"marginBottom": "1.5rem"}),
         
         dbc.Row([
             dbc.Col([
                 dbc.FormText("Last Year Revenue", className="form-label"),
                 dcc.Input(id='revenus_an_dernier', type="number", placeholder="Enter amount...", style={'width': '100%'}),
-            ], md=6),
+            ], xs=12, sm=12, md=6, lg=6),
             dbc.Col([
                 dbc.FormText("Number of Employees", className="form-label"),
                 dcc.Input(id='nombreemployes', type="number", placeholder="Enter number...", style={'width': '100%'}),
-            ], md=6),
+            ], xs=12, sm=12, md=6, lg=6),
         ], style={"marginBottom": "1.5rem"}),
         
         dbc.Row([
             dbc.Col([
                 dbc.FormText("Monthly Rent", className="form-label"),
                 dcc.Input(id='montantloyer', type="number", placeholder="Enter amount...", style={'width': '100%'}),
-            ], md=6),
+            ], xs=12, sm=12, md=6, lg=6),
             dbc.Col([
                 dbc.FormText("Business Sector", className="form-label"),
                 dcc.Dropdown(
@@ -136,7 +136,7 @@ questionnaire=html.Div([
                     value="Montreal",
                     id="secteur_activité"
                 ),
-            ], md=6),
+            ], xs=12, sm=12, md=6, lg=6),
         ], style={"marginBottom": "2rem"}),
         
         html.Button("Calculate Results", id="submit-btn", n_clicks=0),
@@ -146,24 +146,24 @@ questionnaire=html.Div([
     dbc.Row([
         dbc.Col(
             html.Div(
-                dcc.Graph(id='piechart', figure=piechart, config={'displaylogo': False, 'editable': True}),
+                dcc.Graph(id='piechart', figure=piechart, config={'displaylogo': False, 'editable': True, 'responsive': True}),
                 className="chart-container"
             ),
-            md=4
+            xs=12, sm=12, md=4, lg=4
         ),
         dbc.Col(
             html.Div(
-                dcc.Graph(id='indic1', figure=indic1, config={'displaylogo': False, 'editable': True}),
+                dcc.Graph(id='indic1', figure=indic1, config={'displaylogo': False, 'editable': True, 'responsive': True}),
                 className="chart-container"
             ),
-            md=4
+            xs=12, sm=12, md=4, lg=4
         ),
         dbc.Col(
             html.Div(
-                dcc.Graph(id='indic2', figure=indic2, config={'displaylogo': False, 'editable': True}),
+                dcc.Graph(id='indic2', figure=indic2, config={'displaylogo': False, 'editable': True, 'responsive': True}),
                 className="chart-container"
             ),
-            md=4
+            xs=12, sm=12, md=4, lg=4
         ),
     ], className="fade-in")
 ], style={"padding": "0"})
