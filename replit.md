@@ -80,10 +80,12 @@ This is a Dash web application called "Clarity" developed by Nisar Solutions. It
   - Hamburger button on right side (thumb-accessible)
   - Slide-in sidebar with overlay
   - Auto-closes on navigation
-- **Loading Screen**: Transparent loading overlay appears briefly during page transitions with:
-  - Semi-transparent white background with blur effect
-  - Animated purple spinner
-  - Smooth fade in/out animation
+- **Loading Screen**: Modern, elegant loading overlay during page transitions with:
+  - Gradient conic spinner (animated purple gradient)
+  - "Loading Clarity..." text with animated dots
+  - Glassmorphism effect (backdrop blur with gradient background)
+  - Smooth scale-in and fade animations
+  - Glow effect around spinner
 - **Modern Design System**:
   - Purple gradient theme (#4F46E5 to #4338CA)
   - Inter and Poppins fonts
@@ -109,7 +111,21 @@ This is a Dash web application called "Clarity" developed by Nisar Solutions. It
   - Proper spacing and padding
 - **Print-friendly styles** for documents
 
-## Recent Changes (November 25, 2025 - Final Session)
+## Recent Changes (November 25, 2025 - Latest Session)
+### Modern Loading Screen
+- Upgraded "Loading..." text to modern "Loading Clarity..." with animated dots
+- Implemented gradient conic spinner with purple color scheme
+- Added glassmorphism effect with enhanced backdrop blur
+- Created smooth scale-in and fade animations for visual appeal
+- Added glow effect around spinner for polished look
+- Loading text uses gradient color matching app theme
+
+### Bug Fix - Authentication Loop
+- Fixed infinite restart loop when logged in (changed display_page callback from Input to State)
+- This prevents session store updates from triggering unnecessary page re-renders
+- Smooth navigation now works without continuous reloads
+
+## Previous Session (November 25, 2025 - Earlier Updates)
 ### Authentication & Security
 - Implemented complete authentication system with Login/Signup page
 - Added session storage for persistent user login state
@@ -124,7 +140,7 @@ This is a Dash web application called "Clarity" developed by Nisar Solutions. It
 - Buttons wrapped in form for semantic HTML
 - Removed form field validation browser warnings
 
-### Bug Fixes
+### Bug Fixes (Earlier)
 - Fixed infinite reload loop caused by conflicting URL callbacks
 - Fixed duplicate callback outputs error
 - Removed problematic URL redirect from callback

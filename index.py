@@ -55,8 +55,20 @@ def index():
         html.Div(id="_js_output", style={"display": "none"}),
         # Hidden element for auth redirect
         html.Div(id="_auth_redirect", style={"display": "none"}),
-        # Loading screen overlay
-        html.Div(id="loading-screen", className="loading-screen"),
+        # Loading screen overlay with modern spinner and text
+        html.Div(
+            [
+                html.Div(
+                    [
+                        html.Div(className="loading-spinner"),
+                        html.Div("Loading Clarity", className="loading-text")
+                    ],
+                    className="loading-container"
+                )
+            ],
+            id="loading-screen",
+            className="loading-screen"
+        ),
         # Mobile menu toggle button
         html.Button("☰", id="mobile-menu-toggle", className="mobile-menu-toggle", n_clicks=0),
         # Sidebar overlay for mobile
