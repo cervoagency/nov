@@ -311,7 +311,7 @@ button:active, .btn:active {
     display: none;
     position: fixed;
     top: 1rem;
-    left: 1rem;
+    right: 1rem;
     z-index: 1001;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
