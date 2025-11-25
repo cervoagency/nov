@@ -4,15 +4,48 @@ import data
 import plotly.graph_objects as go
 from data import final_data
 
-Home = html.Div(
-    [html.Br(),
-        html.Br(),
-        html.Br(),
-        html.Br(),
-        html.Br(),
-        html.Br(),
-        html.H1("Home- demo", style={"text-align": "center"})],
-    className="mx-2")
+Home = html.Div([
+    html.Div([
+        html.H1("Welcome to Clarity", className="hero-title"),
+        html.P(
+            "Powerful financial insights and analysis tools for modern businesses",
+            className="hero-subtitle"
+        ),
+    ], className="hero-section fade-in"),
+    
+    dbc.Row([
+        dbc.Col([
+            html.Div([
+                html.Div("📊", style={"fontSize": "3rem", "marginBottom": "1rem"}),
+                html.H3("Data Visualization", style={"marginBottom": "1rem"}),
+                html.P(
+                    "Interactive charts and graphs that bring your financial data to life",
+                    style={"color": "var(--text-secondary)"}
+                ),
+            ], className="modern-card fade-in")
+        ], md=4),
+        dbc.Col([
+            html.Div([
+                html.Div("💼", style={"fontSize": "3rem", "marginBottom": "1rem"}),
+                html.H3("Business Insights", style={"marginBottom": "1rem"}),
+                html.P(
+                    "Make informed decisions with comprehensive financial analysis",
+                    style={"color": "var(--text-secondary)"}
+                ),
+            ], className="modern-card fade-in")
+        ], md=4),
+        dbc.Col([
+            html.Div([
+                html.Div("⚡", style={"fontSize": "3rem", "marginBottom": "1rem"}),
+                html.H3("Real-time Updates", style={"marginBottom": "1rem"}),
+                html.P(
+                    "Get instant feedback and calculations as you input your data",
+                    style={"color": "var(--text-secondary)"}
+                ),
+            ], className="modern-card fade-in")
+        ], md=4),
+    ], style={"marginTop": "2rem"}),
+], style={"padding": "0"})
 
 # Chart Définitions
 piechart=go.Figure()
