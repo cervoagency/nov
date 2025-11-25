@@ -22,6 +22,15 @@ app.clientside_callback(
                     sidebar.classList.remove('show');
                     overlay.classList.remove('show');
                 };
+                
+                // Close menu when any nav link is clicked
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.onclick = function() {
+                        sidebar.classList.remove('show');
+                        overlay.classList.remove('show');
+                    };
+                });
             }
         }
         return '';
