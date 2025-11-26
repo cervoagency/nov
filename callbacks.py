@@ -158,18 +158,4 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
         {"display": "none"},
     )
 
-# Clientside callback to redirect after successful login
-app.clientside_callback(
-    """
-    function(data) {
-        if (data && data.authenticated) {
-            window.location.href = '/';
-        }
-        return '';
-    }
-    """,
-    Output('_auth_redirect', 'children'),
-    Input('user-session-store', 'data'),
-    prevent_initial_call=True
-)
 
