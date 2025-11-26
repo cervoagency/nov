@@ -78,7 +78,7 @@ def toggle_auth_mode(n_clicks, current_text):
         # Switch to sign in
         return (
             "Welcome Back",
-            "Sign in to your account to continue",
+            "Login or Sign up to continue",
             {"display": "none"},
             "Sign In",
             "Sign Up",

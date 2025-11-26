@@ -44,7 +44,7 @@ Login = html.Div([
                                 "fontSize": "2rem",
                                 "fontWeight": "700"
                             }),
-                            html.P("Sign in to your account to continue", id="auth-subtitle", style={
+                            html.P("Login or Sign up to continue", id="auth-subtitle", style={
                                 "color": "var(--text-secondary)",
                                 "marginBottom": "2rem"
                             }),
