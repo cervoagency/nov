@@ -42,27 +42,6 @@ app.clientside_callback(
     Input('mobile-menu-toggle', 'n_clicks')
 )
 
-# Clientside callback for loading screen on page navigation
-app.clientside_callback(
-    """
-    function(pathname) {
-        const loadingScreen = document.querySelector('.loading-screen');
-        if (loadingScreen) {
-            // Show loading screen
-            loadingScreen.classList.add('show');
-            
-            // Hide after 400ms (page transition time)
-            setTimeout(function() {
-                loadingScreen.classList.remove('show');
-            }, 400);
-        }
-        return window.location.pathname;
-    }
-    """,
-    Output('_js_output', 'children'),
-    Input('url', 'pathname'),
-    prevent_initial_call=True
-)
 
 # Toggle between sign in and sign up
 @app.callback(
