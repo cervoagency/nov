@@ -56,8 +56,6 @@ app.clientside_callback(
         Output('auth-email', 'value'),
         Output('auth-password', 'value'),
         Output('auth-confirm-password', 'value'),
-        Output('auth-error', 'children'),
-        Output('auth-error', 'style'),
     ],
     Input('toggle-signup-btn', 'n_clicks'),
     State('toggle-signup-btn', 'children'),
@@ -78,8 +76,6 @@ def toggle_auth_mode(n_clicks, current_text):
             "",  # Clear email
             "",  # Clear password
             "",  # Clear confirm password
-            "",  # Clear error
-            {"display": "none"},  # Hide error
         )
     else:
         # Switch to sign in
@@ -93,8 +89,6 @@ def toggle_auth_mode(n_clicks, current_text):
             "",  # Clear email
             "",  # Clear password
             "",  # Clear confirm password
-            "",  # Clear error
-            {"display": "none"},  # Hide error
         )
 
 # Handle authentication
