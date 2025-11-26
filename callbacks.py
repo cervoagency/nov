@@ -6,6 +6,7 @@ import data
 from data import final_data
 import json
 from datetime import datetime
+from users import user_exists, register_user, verify_user
 
 # Clientside callback for mobile menu toggle (runs in browser for better performance)
 app.clientside_callback(
@@ -116,7 +117,7 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
             {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
         )
     
-    # Sign up validation
+    # Sign up - Create new account
     if submit_text == "Create Account":
         if not confirm_password:
             return (
@@ -136,26 +137,57 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
                 "Password must be at least 6 characters",
                 {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
             )
-    
-    # For demo: accept any valid input (in production, validate against database)
-    if len(password) < 3:
+        
+        # Register new user
+        success, message = register_user(email, password)
+        if not success:
+            return (
+                session_data,
+                message,
+                {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
+            )
+        
+        # Create session after successful registration
+        user_data = {
+            "email": email,
+            "login_time": datetime.now().isoformat(),
+            "authenticated": True
+        }
         return (
-            session_data,
-            "Password too short",
-            {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
+            user_data,
+            "",
+            {"display": "none"},
         )
     
-    # Create session
-    user_data = {
-        "email": email,
-        "login_time": datetime.now().isoformat(),
-        "authenticated": True
-    }
-    
-    return (
-        user_data,
-        "",
-        {"display": "none"},
-    )
+    # Sign in - Verify existing user with stored password
+    else:
+        # Enforce 6 character minimum for login as well
+        if len(password) < 6:
+            return (
+                session_data,
+                "Password must be at least 6 characters",
+                {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
+            )
+        
+        # Verify user credentials against stored password hash
+        success, message = verify_user(email, password)
+        if not success:
+            return (
+                session_data,
+                message,
+                {"color": "#dc2626", "fontSize": "0.875rem", "marginBottom": "1rem", "display": "block"},
+            )
+        
+        # Create session after successful login
+        user_data = {
+            "email": email,
+            "login_time": datetime.now().isoformat(),
+            "authenticated": True
+        }
+        return (
+            user_data,
+            "",
+            {"display": "none"},
+        )
 
 
