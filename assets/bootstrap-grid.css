@@ -169,6 +169,16 @@ a:active {
   text-decoration: underline;
 }
 
+/* Forgot Password Link */
+.forgot-password-link {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline !important;
+}
+
 /* Sidebar Styling */
 .sidebar {
     position: fixed !important;

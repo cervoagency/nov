@@ -125,7 +125,7 @@ Login = html.Div([
                             
                             # Submit button
                             html.Button(
-                                "Sign In",
+                                "Continue",
                                 id="auth-submit-btn",
                                 n_clicks=0,
                                 type="button",
@@ -145,25 +145,22 @@ Login = html.Div([
                                 className="auth-btn"
                             ),
                             
-                            # Toggle between sign in and sign up
+                            # Forgot password link
                             html.Div([
-                                html.Span("Don't have an account? ", style={"color": "var(--text-secondary)"}),
-                                html.Button(
-                                    "Sign Up",
-                                    id="toggle-signup-btn",
-                                    n_clicks=0,
-                                    type="button",
+                                html.A(
+                                    "Forgot password?",
+                                    href="#",
                                     style={
-                                        "background": "none",
-                                        "border": "none",
                                         "color": "var(--primary-color)",
+                                        "textDecoration": "none",
+                                        "fontSize": "0.9rem",
+                                        "fontWeight": "500",
                                         "cursor": "pointer",
-                                        "fontSize": "1rem",
-                                        "fontWeight": "600",
-                                        "textDecoration": "underline"
-                                    }
+                                        "transition": "all 0.3s ease"
+                                    },
+                                    className="forgot-password-link"
                                 )
-                            ], style={"textAlign": "center", "marginTop": "1rem"}),
+                            ], style={"textAlign": "center", "marginTop": "0.5rem"}),
                         ], style={
                             "backgroundColor": "white",
                             "padding": "2rem",
