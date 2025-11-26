@@ -51,10 +51,13 @@ app.clientside_callback(
         Output('auth-subtitle', 'children'),
         Output('confirm-password-section', 'style'),
         Output('auth-submit-btn', 'children'),
+        Output('toggle-text', 'children'),
         Output('toggle-signup-btn', 'children'),
         Output('auth-email', 'value'),
         Output('auth-password', 'value'),
         Output('auth-confirm-password', 'value'),
+        Output('auth-error', 'children'),
+        Output('auth-error', 'style'),
     ],
     Input('toggle-signup-btn', 'n_clicks'),
     State('toggle-signup-btn', 'children'),
@@ -70,10 +73,13 @@ def toggle_auth_mode(n_clicks, current_text):
             "Sign up to get started",
             {"display": "block"},
             "Create Account",
+            "Already have an account? ",
             "Sign In",
             "",  # Clear email
             "",  # Clear password
             "",  # Clear confirm password
+            "",  # Clear error
+            {"display": "none"},  # Hide error
         )
     else:
         # Switch to sign in
@@ -82,10 +88,13 @@ def toggle_auth_mode(n_clicks, current_text):
             "Login or Sign up to continue",
             {"display": "none"},
             "Sign In",
+            "Don't have an account? ",
             "Sign Up",
             "",  # Clear email
             "",  # Clear password
             "",  # Clear confirm password
+            "",  # Clear error
+            {"display": "none"},  # Hide error
         )
 
 # Handle authentication

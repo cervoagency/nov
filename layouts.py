@@ -125,7 +125,7 @@ Login = html.Div([
                             
                             # Submit button
                             html.Button(
-                                "Continue",
+                                "Sign In",
                                 id="auth-submit-btn",
                                 n_clicks=0,
                                 type="button",
@@ -147,20 +147,48 @@ Login = html.Div([
                             
                             # Forgot password link
                             html.Div([
-                                html.A(
-                                    "Forgot password?",
-                                    href="#",
+                                html.Span("Forgot password? ", style={"color": "var(--text-secondary)", "fontSize": "0.9rem"}),
+                                html.Button(
+                                    "Reset it",
+                                    id="forgot-password-btn",
+                                    n_clicks=0,
                                     style={
                                         "color": "var(--primary-color)",
-                                        "textDecoration": "none",
+                                        "background": "none",
+                                        "border": "none",
+                                        "textDecoration": "underline",
                                         "fontSize": "0.9rem",
                                         "fontWeight": "500",
                                         "cursor": "pointer",
-                                        "transition": "all 0.3s ease"
-                                    },
-                                    className="forgot-password-link"
+                                        "transition": "all 0.3s ease",
+                                        "padding": "0",
+                                        "font": "inherit"
+                                    }
                                 )
-                            ], style={"textAlign": "center", "marginTop": "0.5rem"}),
+                            ], style={"textAlign": "center", "marginTop": "1rem", "marginBottom": "1rem"}),
+                            
+                            # Sign up/Sign in toggle
+                            html.Div([
+                                html.Span(id="toggle-text", children="Don't have an account? ", style={"color": "var(--text-secondary)", "fontSize": "0.9rem"}),
+                                html.Button(
+                                    "Sign Up",
+                                    id="toggle-signup-btn",
+                                    n_clicks=0,
+                                    type="button",
+                                    style={
+                                        "color": "var(--primary-color)",
+                                        "background": "none",
+                                        "border": "none",
+                                        "textDecoration": "underline",
+                                        "fontSize": "0.9rem",
+                                        "fontWeight": "500",
+                                        "cursor": "pointer",
+                                        "transition": "all 0.3s ease",
+                                        "padding": "0",
+                                        "font": "inherit"
+                                    }
+                                )
+                            ], style={"textAlign": "center"}),
                         ], style={
                             "backgroundColor": "white",
                             "padding": "2rem",
@@ -177,6 +205,83 @@ Login = html.Div([
         "background": "linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)",
         "minHeight": "100vh"
     }),
+    
+    # Forgot Password Modal
+    dbc.Modal([
+        dbc.ModalHeader(
+            dbc.ModalTitle("Reset Password"),
+            close_button=True
+        ),
+        dbc.ModalBody([
+            html.Div([
+                html.Label("Email Address", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                dcc.Input(
+                    id="forgot-email",
+                    type="text",
+                    placeholder="Enter your email",
+                    style={
+                        "width": "100%",
+                        "padding": "0.75rem 1rem",
+                        "borderRadius": "0.5rem",
+                        "border": "1px solid #e5e7eb",
+                        "fontSize": "1rem",
+                        "marginBottom": "1rem",
+                        "boxSizing": "border-box"
+                    }
+                ),
+            ], style={"marginBottom": "1rem"}),
+            html.Div([
+                html.Label("New Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                dcc.Input(
+                    id="forgot-new-password",
+                    type="password",
+                    placeholder="Enter new password (min 6 characters)",
+                    style={
+                        "width": "100%",
+                        "padding": "0.75rem 1rem",
+                        "borderRadius": "0.5rem",
+                        "border": "1px solid #e5e7eb",
+                        "fontSize": "1rem",
+                        "marginBottom": "1rem",
+                        "boxSizing": "border-box"
+                    }
+                ),
+            ], style={"marginBottom": "1rem"}),
+            html.Div([
+                html.Label("Confirm Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                dcc.Input(
+                    id="forgot-confirm-password",
+                    type="password",
+                    placeholder="Confirm new password",
+                    style={
+                        "width": "100%",
+                        "padding": "0.75rem 1rem",
+                        "borderRadius": "0.5rem",
+                        "border": "1px solid #e5e7eb",
+                        "fontSize": "1rem",
+                        "marginBottom": "1rem",
+                        "boxSizing": "border-box"
+                    }
+                ),
+            ]),
+            html.Div(id="forgot-error", style={
+                "color": "#dc2626",
+                "fontSize": "0.875rem",
+                "marginBottom": "1rem",
+                "display": "none"
+            }),
+            html.Div(id="forgot-success", style={
+                "color": "#16a34a",
+                "fontSize": "0.875rem",
+                "marginBottom": "1rem",
+                "display": "none"
+            }),
+        ]),
+        dbc.ModalFooter([
+            dbc.Button("Cancel", id="forgot-cancel-btn", className="me-2"),
+            dbc.Button("Reset Password", id="forgot-submit-btn", color="primary"),
+        ]),
+    ], id="forgot-password-modal", is_open=False, centered=True),
 ], style={"padding": "0", "margin": "0"})
 
 Home = html.Div([
