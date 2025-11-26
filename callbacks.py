@@ -53,9 +53,6 @@ app.clientside_callback(
         Output('auth-submit-btn', 'children'),
         Output('toggle-text', 'children'),
         Output('toggle-signup-btn', 'children'),
-        Output('auth-email', 'value'),
-        Output('auth-password', 'value'),
-        Output('auth-confirm-password', 'value'),
     ],
     Input('toggle-signup-btn', 'n_clicks'),
     State('toggle-signup-btn', 'children'),
@@ -65,7 +62,7 @@ def toggle_auth_mode(n_clicks, current_text):
     is_signup = current_text == "Sign In"
     
     if is_signup:
-        # Switch to sign up
+        # Switch to sign up - keep email/password intact
         return (
             "Create Account",
             "Sign up to get started",
@@ -73,12 +70,9 @@ def toggle_auth_mode(n_clicks, current_text):
             "Create Account",
             "Already have an account? ",
             "Sign In",
-            "",  # Clear email
-            "",  # Clear password
-            "",  # Clear confirm password
         )
     else:
-        # Switch to sign in
+        # Switch to sign in - keep email/password intact
         return (
             "Welcome Back",
             "Login or Sign up to continue",
@@ -86,9 +80,6 @@ def toggle_auth_mode(n_clicks, current_text):
             "Sign In",
             "Don't have an account? ",
             "Sign Up",
-            "",  # Clear email
-            "",  # Clear password
-            "",  # Clear confirm password
         )
 
 # Handle authentication
@@ -112,6 +103,9 @@ def authenticate_user(n_clicks, email, password, confirm_password, submit_text, 
     # Check if button was never clicked
     if not n_clicks or n_clicks == 0:
         raise exceptions.PreventUpdate
+    
+    # Strip whitespace from email
+    email = email.strip() if email else email
     
     if not email or not password:
         return (
