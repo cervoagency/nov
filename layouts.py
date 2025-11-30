@@ -4,285 +4,341 @@ import data
 import plotly.graph_objects as go
 from data import final_data
 
-# Login/Signup Layout
+# Login/Signup Layout - Clean & Responsive
 Login = html.Div([
-    html.Div([
-        dbc.Container([
-            dbc.Row([
-                dbc.Col([
+    dbc.Container([
+        dbc.Row([
+            # Left Column - Branding (hidden on mobile)
+            dbc.Col([
+                html.Div([
                     html.Div([
-                        # Left side - Branding and info
+                        html.H1("Clarity", style={
+                            "fontSize": "4rem",
+                            "fontWeight": "700",
+                            "background": "linear-gradient(135deg, #FFFFFF 0%, rgba(255,255,255,0.8) 100%)",
+                            "WebkitBackgroundClip": "text",
+                            "WebkitTextFillColor": "transparent",
+                            "marginBottom": "1rem"
+                        }),
+                        html.P("By Nisar Solutions", style={
+                            "color": "rgba(255,255,255,0.9)",
+                            "fontSize": "1.2rem",
+                            "fontWeight": "500",
+                            "marginBottom": "2rem"
+                        }),
+                        html.Hr(style={
+                            "borderColor": "rgba(255,255,255,0.3)",
+                            "margin": "2rem 0"
+                        }),
+                        html.P("Powerful financial insights and analysis tools for modern businesses", style={
+                            "color": "rgba(255,255,255,0.8)",
+                            "fontSize": "1.1rem",
+                            "lineHeight": "1.8",
+                            "maxWidth": "450px"
+                        }),
+                        html.Ul([
+                            html.Li("📊 Interactive data visualization", style={"marginBottom": "1rem"}),
+                            html.Li("💼 Comprehensive financial analysis", style={"marginBottom": "1rem"}),
+                            html.Li("⚡ Real-time insights", style={"marginBottom": "1rem"}),
+                        ], style={
+                            "color": "rgba(255,255,255,0.9)",
+                            "fontSize": "1rem",
+                            "marginTop": "2rem",
+                            "listStyle": "none",
+                            "padding": "0"
+                        })
+                    ], style={
+                        "padding": "3rem",
+                    })
+                ], style={
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "minHeight": "100vh"
+                })
+            ], xs=0, sm=0, md=6, lg=6, className="d-none d-md-block"),
+
+            # Right Column - Form
+            dbc.Col([
+                html.Div([
+                    html.Div([
+                        # Logo for mobile (shown only on small screens)
                         html.Div([
-                            html.H1("Clarity", style={
-                                "color": "white",
-                                "fontSize": "3.5rem",
+                            html.H2("Clarity", style={
+                                "color": "var(--primary-color)",
                                 "fontWeight": "700",
-                                "marginBottom": "1rem"
+                                "marginBottom": "0.5rem",
+                                "textAlign": "center"
                             }),
                             html.P("By Nisar Solutions", style={
-                                "color": "rgba(255,255,255,0.8)",
-                                "fontSize": "1.1rem",
-                                "marginBottom": "2rem"
-                            }),
-                            html.P("Powerful financial insights and analysis tools for modern businesses", style={
-                                "color": "rgba(255,255,255,0.7)",
-                                "fontSize": "1rem",
-                                "lineHeight": "1.6",
-                                "maxWidth": "400px"
-                            })
-                        ], style={"marginTop": "4rem"})
-                    ], className="login-left-section"),
-                ], xs=12, sm=12, md=6, lg=6, style={"display": "flex", "alignItems": "center"}),
-                
-                dbc.Col([
-                    html.Div([
-                        # Right side - Form
-                        html.Form([
-                            html.H2("Welcome Back", id="auth-title", style={
-                                "marginBottom": "0.5rem",
-                                "color": "var(--text-primary)",
-                                "fontSize": "2rem",
-                                "fontWeight": "700"
-                            }),
-                            html.P("Login or Sign up to continue", id="auth-subtitle", style={
                                 "color": "var(--text-secondary)",
-                                "marginBottom": "2rem"
+                                "textAlign": "center",
+                                "marginBottom": "2rem",
+                                "fontSize": "0.9rem"
                             }),
-                            
-                            # Email/Username input
-                            html.Div([
-                                html.Label("Email or Username", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
-                                dcc.Input(
-                                    id="auth-email",
-                                    type="text",
-                                    placeholder="Enter your email or username",
-                                    className="auth-input",
-                                    autoComplete="username",
-                                    style={
-                                        "width": "100%",
-                                        "padding": "0.75rem 1rem",
-                                        "borderRadius": "0.5rem",
-                                        "border": "1px solid #e5e7eb",
-                                        "fontSize": "1rem",
-                                        "marginBottom": "1.5rem",
-                                        "fontFamily": "Inter, sans-serif",
-                                        "boxSizing": "border-box"
-                                    }
-                                ),
-                            ]),
-                            
-                            # Password input
-                            html.Div([
-                                html.Label("Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
-                                dcc.Input(
-                                    id="auth-password",
-                                    type="password",
-                                    placeholder="Enter your password",
-                                    className="auth-input",
-                                    autoComplete="current-password",
-                                    style={
-                                        "width": "100%",
-                                        "padding": "0.75rem 1rem",
-                                        "borderRadius": "0.5rem",
-                                        "border": "1px solid #e5e7eb",
-                                        "fontSize": "1rem",
-                                        "marginBottom": "1.5rem",
-                                        "fontFamily": "Inter, sans-serif",
-                                        "boxSizing": "border-box"
-                                    }
-                                ),
-                            ], id="password-section"),
-                            
-                            # Confirm Password (hidden for login, shown for signup)
-                            html.Div([
-                                html.Label("Confirm Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
-                                dcc.Input(
-                                    id="auth-confirm-password",
-                                    type="password",
-                                    placeholder="Confirm your password",
-                                    className="auth-input",
-                                    autoComplete="new-password",
-                                    style={
-                                        "width": "100%",
-                                        "padding": "0.75rem 1rem",
-                                        "borderRadius": "0.5rem",
-                                        "border": "1px solid #e5e7eb",
-                                        "fontSize": "1rem",
-                                        "marginBottom": "1.5rem",
-                                        "fontFamily": "Inter, sans-serif",
-                                        "boxSizing": "border-box"
-                                    }
-                                ),
-                            ], id="confirm-password-section", style={"display": "none"}),
-                            
-                            # Error message
-                            html.Div(id="auth-error", style={
-                                "color": "#dc2626",
-                                "fontSize": "0.875rem",
-                                "marginBottom": "1rem",
-                                "display": "none"
+                        ], className="d-md-none", style={"marginBottom": "2rem"}),
+
+                        # Form Title
+                        html.H2("Welcome Back", id="auth-title", style={
+                            "marginBottom": "0.5rem",
+                            "color": "var(--text-primary)",
+                            "fontSize": "2rem",
+                            "fontWeight": "700"
+                        }),
+                        html.P("Login or Sign up to continue", id="auth-subtitle", style={
+                            "color": "var(--text-secondary)",
+                            "marginBottom": "2rem"
+                        }),
+
+                        # Error message
+                        html.Div(id="auth-error", style={
+                            "color": "#dc2626",
+                            "fontSize": "0.875rem",
+                            "marginBottom": "1rem",
+                            "padding": "0.75rem",
+                            "backgroundColor": "#fee2e2",
+                            "borderRadius": "0.5rem",
+                            "display": "none"
+                        }),
+
+                        # Email input
+                        html.Div([
+                            html.Label("Email", style={
+                                "marginBottom": "0.5rem",
+                                "fontWeight": "500",
+                                "display": "block",
+                                "color": "var(--text-primary)"
                             }),
-                            
-                            # Submit button
-                            html.Button(
-                                "Sign In",
-                                id="auth-submit-btn",
-                                n_clicks=0,
-                                type="button",
+                            dcc.Input(
+                                id="auth-email",
+                                type="email",
+                                placeholder="name@example.com",
+                                autoComplete="email",
                                 style={
                                     "width": "100%",
                                     "padding": "0.75rem 1rem",
-                                    "backgroundColor": "var(--primary-color)",
-                                    "color": "white",
-                                    "border": "none",
                                     "borderRadius": "0.5rem",
+                                    "border": "2px solid #e5e7eb",
                                     "fontSize": "1rem",
+                                    "transition": "all 0.3s ease",
+                                    "fontFamily": "Inter, sans-serif",
+                                    "boxSizing": "border-box"
+                                }
+                            ),
+                        ], style={"marginBottom": "1.5rem"}),
+
+                        # Password input
+                        html.Div([
+                            html.Label("Password", style={
+                                "marginBottom": "0.5rem",
+                                "fontWeight": "500",
+                                "display": "block",
+                                "color": "var(--text-primary)"
+                            }),
+                            dcc.Input(
+                                id="auth-password",
+                                type="password",
+                                placeholder="Enter your password",
+                                autoComplete="current-password",
+                                style={
+                                    "width": "100%",
+                                    "padding": "0.75rem 1rem",
+                                    "borderRadius": "0.5rem",
+                                    "border": "2px solid #e5e7eb",
+                                    "fontSize": "1rem",
+                                    "transition": "all 0.3s ease",
+                                    "fontFamily": "Inter, sans-serif",
+                                    "boxSizing": "border-box"
+                                }
+                            ),
+                        ], style={"marginBottom": "1.5rem"}),
+
+                        # Confirm Password (hidden by default)
+                        html.Div([
+                            html.Label("Confirm Password", style={
+                                "marginBottom": "0.5rem",
+                                "fontWeight": "500",
+                                "display": "block",
+                                "color": "var(--text-primary)"
+                            }),
+                            dcc.Input(
+                                id="auth-confirm-password",
+                                type="password",
+                                placeholder="Confirm your password",
+                                autoComplete="new-password",
+                                style={
+                                    "width": "100%",
+                                    "padding": "0.75rem 1rem",
+                                    "borderRadius": "0.5rem",
+                                    "border": "2px solid #e5e7eb",
+                                    "fontSize": "1rem",
+                                    "transition": "all 0.3s ease",
+                                    "fontFamily": "Inter, sans-serif",
+                                    "boxSizing": "border-box"
+                                }
+                            ),
+                        ], id="confirm-password-section", style={"marginBottom": "1.5rem", "display": "none"}),
+
+                        # Submit button
+                        html.Button(
+                            "Sign In",
+                            id="auth-submit-btn",
+                            n_clicks=0,
+                            style={
+                                "width": "100%",
+                                "padding": "0.875rem 1rem",
+                                "backgroundColor": "var(--primary-color)",
+                                "color": "white",
+                                "border": "none",
+                                "borderRadius": "0.5rem",
+                                "fontSize": "1rem",
+                                "fontWeight": "600",
+                                "cursor": "pointer",
+                                "transition": "all 0.3s ease",
+                                "marginBottom": "1rem"
+                            },
+                            className="auth-btn"
+                        ),
+
+                        # Forgot password link
+                        html.Div([
+                            html.Span("Forgot password? ", style={
+                                "color": "var(--text-secondary)",
+                                "fontSize": "0.9rem"
+                            }),
+                            html.A(
+                                "Reset it",
+                                id="reset-password-link",
+                                n_clicks=0,
+                                style={
+                                    "color": "var(--primary-color)",
+                                    "textDecoration": "underline",
+                                    "fontSize": "0.9rem",
+                                    "fontWeight": "500",
+                                    "cursor": "pointer",
+                                    "background": "none",
+                                    "border": "none",
+                                    "padding": "0"
+                                }
+                            )
+                        ], style={
+                            "textAlign": "center",
+                            "marginTop": "1rem",
+                            "marginBottom": "1.5rem"
+                        }),
+
+                        # Divider
+                        html.Div([
+                            html.Hr(style={
+                                "borderColor": "#e5e7eb",
+                                "margin": "1.5rem 0"
+                            }),
+                        ]),
+
+                        # Sign up/Sign in toggle
+                        html.Div([
+                            html.Span(id="toggle-text", children="Don't have an account? ", style={
+                                "color": "var(--text-secondary)",
+                                "fontSize": "0.95rem"
+                            }),
+                            html.A(
+                                "Sign Up",
+                                id="toggle-signup-btn",
+                                n_clicks=0,
+                                style={
+                                    "color": "var(--primary-color)",
+                                    "textDecoration": "underline",
+                                    "fontSize": "0.95rem",
                                     "fontWeight": "600",
                                     "cursor": "pointer",
-                                    "transition": "all 0.3s ease",
-                                    "marginBottom": "1rem"
-                                },
-                                className="auth-btn"
-                            ),
-                            
-                            # Forgot password link
-                            html.Div([
-                                html.Span("Forgot password? ", style={"color": "var(--text-secondary)", "fontSize": "0.9rem"}),
-                                html.Button(
-                                    "Reset it",
-                                    id="forgot-password-btn",
-                                    n_clicks=0,
-                                    style={
-                                        "color": "var(--primary-color)",
-                                        "background": "none",
-                                        "border": "none",
-                                        "textDecoration": "underline",
-                                        "fontSize": "0.9rem",
-                                        "fontWeight": "500",
-                                        "cursor": "pointer",
-                                        "transition": "all 0.3s ease",
-                                        "padding": "0",
-                                        "font": "inherit"
-                                    }
-                                )
-                            ], style={"textAlign": "center", "marginTop": "1rem", "marginBottom": "1rem"}),
-                            
-                            # Sign up/Sign in toggle
-                            html.Div([
-                                html.Span(id="toggle-text", children="Don't have an account? ", style={"color": "var(--text-secondary)", "fontSize": "0.9rem"}),
-                                html.Button(
-                                    "Sign Up",
-                                    id="toggle-signup-btn",
-                                    n_clicks=0,
-                                    type="button",
-                                    style={
-                                        "color": "var(--primary-color)",
-                                        "background": "none",
-                                        "border": "none",
-                                        "textDecoration": "underline",
-                                        "fontSize": "0.9rem",
-                                        "fontWeight": "500",
-                                        "cursor": "pointer",
-                                        "transition": "all 0.3s ease",
-                                        "padding": "0",
-                                        "font": "inherit"
-                                    }
-                                )
-                            ], style={"textAlign": "center"}),
-                        ], style={
-                            "backgroundColor": "white",
-                            "padding": "2rem",
-                            "borderRadius": "1rem",
-                            "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.07)",
-                            "maxWidth": "400px",
-                            "margin": "0 auto"
-                        }),
-                    ], style={"display": "flex", "alignItems": "center", "minHeight": "100vh"})
-                ], xs=12, sm=12, md=6, lg=6)
-            ], style={"minHeight": "100vh"}),
-        ], fluid=True, style={"padding": "0"})
-    ], style={
-        "background": "linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)",
-        "minHeight": "100vh"
-    }),
-    
-    # Forgot Password Modal
+                                    "background": "none",
+                                    "border": "none",
+                                    "padding": "0"
+                                }
+                            )
+                        ], style={"textAlign": "center"}),
+                    ], style={
+                        "backgroundColor": "white",
+                        "padding": "2.5rem",
+                        "borderRadius": "1rem",
+                        "boxShadow": "0 10px 25px rgba(0, 0, 0, 0.1)",
+                        "maxWidth": "450px",
+                        "width": "100%"
+                    }),
+                ], style={
+                    "display": "flex",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "minHeight": "100vh",
+                    "padding": "2rem 1rem"
+                })
+            ], xs=12, sm=12, md=6, lg=6)
+        ], style={"minHeight": "100vh", "margin": "0"}),
+    ], fluid=True, style={"padding": "0"}),
+
+    # Reset Password Modal (Simple & Clean)
     dbc.Modal([
         dbc.ModalHeader(
-            dbc.ModalTitle("Reset Password"),
+            dbc.ModalTitle("Reset Password", style={"color": "var(--text-primary)"}),
             close_button=True
         ),
         dbc.ModalBody([
+            html.P(
+                "Enter your email address and we'll send you instructions to reset your password.",
+                style={
+                    "color": "var(--text-secondary)",
+                    "marginBottom": "1.5rem",
+                    "lineHeight": "1.6"
+                }
+            ),
             html.Div([
-                html.Label("Email Address", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
+                html.Label("Email Address", style={
+                    "marginBottom": "0.5rem",
+                    "fontWeight": "500",
+                    "display": "block"
+                }),
                 dcc.Input(
-                    id="forgot-email",
-                    type="text",
-                    placeholder="Enter your email",
+                    id="reset-email",
+                    type="email",
+                    placeholder="name@example.com",
                     style={
                         "width": "100%",
                         "padding": "0.75rem 1rem",
                         "borderRadius": "0.5rem",
-                        "border": "1px solid #e5e7eb",
+                        "border": "2px solid #e5e7eb",
                         "fontSize": "1rem",
-                        "marginBottom": "1rem",
-                        "boxSizing": "border-box"
-                    }
-                ),
-            ], style={"marginBottom": "1rem"}),
-            html.Div([
-                html.Label("New Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
-                dcc.Input(
-                    id="forgot-new-password",
-                    type="password",
-                    placeholder="Enter new password (min 6 characters)",
-                    style={
-                        "width": "100%",
-                        "padding": "0.75rem 1rem",
-                        "borderRadius": "0.5rem",
-                        "border": "1px solid #e5e7eb",
-                        "fontSize": "1rem",
-                        "marginBottom": "1rem",
-                        "boxSizing": "border-box"
-                    }
-                ),
-            ], style={"marginBottom": "1rem"}),
-            html.Div([
-                html.Label("Confirm Password", style={"marginBottom": "0.5rem", "fontWeight": "500"}),
-                dcc.Input(
-                    id="forgot-confirm-password",
-                    type="password",
-                    placeholder="Confirm new password",
-                    style={
-                        "width": "100%",
-                        "padding": "0.75rem 1rem",
-                        "borderRadius": "0.5rem",
-                        "border": "1px solid #e5e7eb",
-                        "fontSize": "1rem",
-                        "marginBottom": "1rem",
                         "boxSizing": "border-box"
                     }
                 ),
             ]),
-            html.Div(id="forgot-error", style={
-                "color": "#dc2626",
+            html.Div(id="reset-message", style={
+                "marginTop": "1rem",
                 "fontSize": "0.875rem",
-                "marginBottom": "1rem",
-                "display": "none"
-            }),
-            html.Div(id="forgot-success", style={
-                "color": "#16a34a",
-                "fontSize": "0.875rem",
-                "marginBottom": "1rem",
                 "display": "none"
             }),
         ]),
         dbc.ModalFooter([
-            dbc.Button("Cancel", id="forgot-cancel-btn", className="me-2"),
-            dbc.Button("Reset Password", id="forgot-submit-btn", color="primary"),
+            dbc.Button(
+                "Cancel",
+                id="cancel-reset-btn",
+                color="secondary",
+                outline=True,
+                n_clicks=0
+            ),
+            dbc.Button(
+                "Send Reset Link",
+                id="submit-reset-btn",
+                color="primary",
+                n_clicks=0
+            ),
         ]),
-    ], id="forgot-password-modal", is_open=False, centered=True),
-], style={"padding": "0", "margin": "0"})
+    ], id="reset-modal", is_open=False, centered=True),
+], style={
+    "background": "linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)",
+    "minHeight": "100vh",
+    "padding": "0",
+    "margin": "0"
+})
 
 Home = html.Div([
     html.Div([
