@@ -47,7 +47,7 @@ def display_page(pathname, session_data):
 # Main index function that will call and return all layout variables
 def index():
     layout = html.Div([
-        dcc.Location(id="url"),
+        dcc.Location(id="url", refresh=True),
         # User session storage
         dcc.Store(id="user-session-store", data={}, storage_type="session"),
         # Hidden element for JS output
