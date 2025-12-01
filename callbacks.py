@@ -417,3 +417,29 @@ def reset_modal_state(n_clicks):
         "",
         {"display": "none"}
     )
+
+# ============================================
+# LOGOUT CALLBACK
+# ============================================
+
+@app.callback(
+    [
+        Output('user-session-store', 'data', allow_duplicate=True),
+        Output('url', 'pathname', allow_duplicate=True),
+    ],
+    Input('logout-btn', 'n_clicks'),
+    prevent_initial_call=True
+)
+def handle_logout(n_clicks):
+    """Handle user logout"""
+    print(f"🚪 User logged out")
+    
+    # Clear session data
+    empty_session = {
+        "authenticated": False,
+        "email": None,
+        "login_time": None
+    }
+    
+    # Redirect to login page
+    return (empty_session, "/ClarityApp/")
